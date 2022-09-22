@@ -272,7 +272,7 @@ class Ui_secondWindow(object):
 
 
     def callCollisionCode():
-        func()
+        exec(open('./collision_warning.py').read())
 
 
     def retranslateUi(self, secondWindow):
