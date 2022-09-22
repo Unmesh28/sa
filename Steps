@@ -1,0 +1,15 @@
+step 1: 
+Install python 3
+
+(do these in the home directory)
+https://youtu.be/4ql-077JbEQ
+https://gist.github.com/SeppPenner/6a5a30ebc8f79936fa136c524417761d
+( do only 1 and 2 on the above repository this takes time)
+
+step 2:
+install pyqt 5
+https://youtu.be/GEfTw7N-k8I
+
+step 3:
+install each library in the requirement file
+

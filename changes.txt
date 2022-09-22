@@ -1,0 +1,1 @@
+text size = 20 px time dis
