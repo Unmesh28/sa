@@ -138,8 +138,8 @@ def func():
         frame_num = video.get(cv2.CAP_PROP_POS_FRAMES)
         print(video.get(cv2.CAP_PROP_POS_FRAMES))
         if not ret:
-        print('Reached the end of the video!')
-        break
+            print('Reached the end of the video!')
+            break
         if int(frame_num)%5 == 1:
             frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             frame_resized = cv2.resize(frame_rgb, (width, height))
