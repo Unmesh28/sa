@@ -24,6 +24,7 @@ import time
 from shapely.geometry import Polygon
 # import matplotlib.pyplot as plt
 import pygame
+from pynput.keyboard import Key, Controller
 
 def func():
     # Define and parse input arguments
@@ -49,6 +50,8 @@ def func():
     VIDEO_NAME = args.video
     min_conf_threshold = float(args.threshold)
     use_TPU = args.edgetpu
+
+    keyboard = Controller()
 
     # Import TensorFlow libraries
     # If tflite_runtime is installed, import interpreter from tflite_runtime, else import from regular tensorflow
@@ -194,19 +197,47 @@ def func():
                     # p5, p6, p7, p8 = map(Point, [(xmin,ymin), (xmin, ymax), (xmax,ymax), (xmax,ymin)])
                     # poly2 = Polygon(p5, p6, p7, p8)
                     poly2 = Polygon([(xmin,ymin), (xmin, ymax), (xmax,ymax), (xmax,ymin)])
+
+                    pedestrian = False
+                    two_wheeler = False
+                    four_wheeler = False
+                    animl = False
+
+                    P = ['person']
+                    T = ['bicycle', 'motorcycle', 'rider']
+                    F = ['autorickshaw', 'bus', 'car', 'caravan', 'truck']
+                    A = ['animal']
+                    
+                    object_name = labels[int(classes[i])]
+
+                    if object_name in P :
+                        pedestrian = True
+                    elif object_name in T :
+                        two_wheeler = True
+                    elif object_name in F :
+                        four_wheeler = True
+                    elif object_name in A :
+                        animl = True
                     
                     # Find intersection(whether overlapping)
                     if poly1.intersects(poly2):
                         cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 255, 255), 4)
+                        
+                        keyboard.press('1')
+                        keyboard.release('1')
                         pygame.mixer.init()
                         pygame.mixer.music.load("beep-08b.wav")
                         pygame.mixer.music.play()
                         
                     if poly_critical.intersects(poly2):
                         cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 0, 255), 4)
+                        keyboard.press('2')
+                        keyboard.release('2')
                         pygame.mixer.init()
                         pygame.mixer.music.load("beep-09.wav")
                         pygame.mixer.music.play()
+                        keyboard.press('a')
+                        keyboard.release('a')
                     
     
                     # print(isIntersection)

@@ -233,6 +233,26 @@ def func():
                 
                 poly2 = Polygon([(xmin,ymin), (xmin, ymax), (xmax,ymax), (xmax,ymin)])
                     
+                pedestrian = False
+                two_wheeler = False
+                four_wheeler = False
+                animl = False
+
+                P = ['person']
+                T = ['bicycle', 'motorcycle', 'rider']
+                F = ['autorickshaw', 'bus', 'car', 'caravan', 'truck']
+                A = ['animal']
+                
+                object_name = labels[int(classes[i])]
+
+                if object_name in P :
+                    pedestrian = True
+                elif object_name in T :
+                    two_wheeler = True
+                elif object_name in F :
+                    four_wheeler = True
+                elif object_name in A :
+                    animl = True
                 # Find intersection(whether overlapping)
                 if poly1.intersects(poly2):
                     cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 255, 255), 4)
