@@ -67,6 +67,8 @@ class VideoStream:
 	# Indicate that the camera and thread should be stopped
         self.stopped = True
 
+
+
 # Define and parse input arguments
 parser = argparse.ArgumentParser()
 parser.add_argument('--modeldir', help='Folder the .tflite file is located in',
