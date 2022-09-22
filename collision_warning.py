@@ -241,3 +241,4 @@ def func():
     cv2.destroyAllWindows()
 
 
+func()
