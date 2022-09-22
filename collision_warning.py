@@ -30,7 +30,7 @@ def func():
     # Define and parse input arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('--modeldir', help='Folder the .tflite file is located in',
-                        required=True)
+                        default='./India_model/')
     parser.add_argument('--graph', help='Name of the .tflite file, if different than detect.tflite',
                         default='detect.tflite')
     parser.add_argument('--labels', help='Name of the labelmap file, if different than labelmap.txt',
@@ -38,7 +38,7 @@ def func():
     parser.add_argument('--threshold', help='Minimum confidence threshold for displaying detected objects',
                         default=0.5)
     parser.add_argument('--video', help='Name of the video file',
-                        default='test.mp4')
+                        default='00380017.AVI')
     parser.add_argument('--edgetpu', help='Use Coral Edge TPU Accelerator to speed up detection',
                         action='store_true')
 

@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QGraphicsBlurEffect
 
 from thirdWindow import Ui_thirdWindow
 from Thread import WorkerThread
+from collision_warning import func
 
 
 
@@ -239,7 +240,7 @@ class Ui_secondWindow(object):
 
 
         self.horizontalLayout.addWidget(self.btn1)
-        self.btn1.clicked.connect(self.clicked_btn)
+        self.btn1.clicked.connect(self.callCollisionCode)
 
         self.btn2 = QtWidgets.QPushButton(self.horizontalLayoutWidget)
         self.btn2.setText("Monitor")
@@ -268,6 +269,10 @@ class Ui_secondWindow(object):
 
         self.backBtn.clicked.connect(secondWindow.close)
 
+
+
+    def callCollisionCode():
+        func()
 
 
     def retranslateUi(self, secondWindow):
