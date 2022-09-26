@@ -5,7 +5,8 @@ from PyQt5.QtWidgets import QGraphicsBlurEffect
 
 from thirdWindow import Ui_thirdWindow
 from Thread import WorkerThread
-from collision_warning_webcam_gps import func
+#from collision_warning_webcam_gps import func
+import os
 
 
 
@@ -240,7 +241,7 @@ class Ui_secondWindow(object):
 
 
         self.horizontalLayout.addWidget(self.btn1)
-        self.btn1.clicked.connect(func)
+        self.btn1.clicked.connect(os.system("./collision_warning_webcam_gps.py"))
 
         self.btn2 = QtWidgets.QPushButton(self.horizontalLayoutWidget)
         self.btn2.setText("Monitor")
