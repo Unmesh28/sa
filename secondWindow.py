@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import QGraphicsBlurEffect
 
 from thirdWindow import Ui_thirdWindow
 from Thread import WorkerThread
-from collision_warning import func
+from collision_warning_webcam_gps import func
 
 
 
