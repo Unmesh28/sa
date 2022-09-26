@@ -71,29 +71,36 @@ class VideoStream:
 
 def func() :
     # Define and parse input arguments
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--modeldir', help='Folder the .tflite file is located in',
-                        required=True)
-    parser.add_argument('--graph', help='Name of the .tflite file, if different than detect.tflite',
-                        default='detect.tflite')
-    parser.add_argument('--labels', help='Name of the labelmap file, if different than labelmap.txt',
-                        default='labelmap.txt')
-    parser.add_argument('--threshold', help='Minimum confidence threshold for displaying detected objects',
-                        default=0.5)
-    parser.add_argument('--resolution', help='Desired webcam resolution in WxH. If the webcam does not support the resolution entered, errors may occur.',
-                        default='1280x720')
-    parser.add_argument('--edgetpu', help='Use Coral Edge TPU Accelerator to speed up detection',
-                        action='store_true')
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument('--modeldir', help='Folder the .tflite file is located in',
+    #                     required=True)
+    # parser.add_argument('--graph', help='Name of the .tflite file, if different than detect.tflite',
+    #                     default='detect.tflite')
+    # parser.add_argument('--labels', help='Name of the labelmap file, if different than labelmap.txt',
+    #                     default='labelmap.txt')
+    # parser.add_argument('--threshold', help='Minimum confidence threshold for displaying detected objects',
+    #                     default=0.5)
+    # parser.add_argument('--resolution', help='Desired webcam resolution in WxH. If the webcam does not support the resolution entered, errors may occur.',
+    #                     default='1280x720')
+    # parser.add_argument('--edgetpu', help='Use Coral Edge TPU Accelerator to speed up detection',
+    #                     action='store_true')
 
-    args = parser.parse_args()
+    # args = parser.parse_args()
 
-    MODEL_NAME = args.modeldir
-    GRAPH_NAME = args.graph
-    LABELMAP_NAME = args.labels
-    min_conf_threshold = float(args.threshold)
-    resW, resH = args.resolution.split('x')
-    imW, imH = int(resW), int(resH)
-    use_TPU = args.edgetpu
+    # MODEL_NAME = args.modeldir
+    # GRAPH_NAME = args.graph
+    # LABELMAP_NAME = args.labels
+    # min_conf_threshold = float(args.threshold)
+    # resW, resH = args.resolution.split('x')
+    # imW, imH = int(resW), int(resH)
+    # use_TPU = args.edgetpu
+
+    MODEL_NAME = './India_model/'
+    GRAPH_NAME = 'detect.tflite'
+    LABELMAP_NAME = 'labelmap.txt'
+    VIDEO_NAME = '00380017.AVI'
+    min_conf_threshold = float(0.5)
+    use_TPU = 'store_true'
 
     # Import TensorFlow libraries
     # If tflite_runtime is installed, import interpreter from tflite_runtime, else import from regular tensorflow
