@@ -241,7 +241,7 @@ class Ui_secondWindow(object):
 
 
         self.horizontalLayout.addWidget(self.btn1)
-        self.btn1.clicked.connect(self.callCollisionCode)
+        self.btn1.clicked.connect(self.clicked_btn)
 
         self.btn2 = QtWidgets.QPushButton(self.horizontalLayoutWidget)
         self.btn2.setText("Monitor")
@@ -272,9 +272,9 @@ class Ui_secondWindow(object):
 
 
 
-    def callCollisionCode():
-         #func()
-         os.system("./collision_warning_webcam_gps.py")
+    # def callCollisionCode():
+    #      #func()
+    #      os.system("./collision_warning_webcam_gps.py")
 
 
     def retranslateUi(self, secondWindow):
