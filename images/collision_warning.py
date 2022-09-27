@@ -24,6 +24,7 @@ import time
 from shapely.geometry import Polygon
 # import matplotlib.pyplot as plt
 import pygame
+from pynput.keyboard import Key, Controller
 
 def func():
     # Define and parse input arguments
@@ -132,14 +133,15 @@ def func():
 
 
     while(video.isOpened()):
+        keyboard = Controller()
         # tic = time.time() 
         # Acquire frame and resize to expected shape [1xHxWx3]
         ret, frame = video.read()
         frame_num = video.get(cv2.CAP_PROP_POS_FRAMES)
         print(video.get(cv2.CAP_PROP_POS_FRAMES))
         if not ret:
-        print('Reached the end of the video!')
-        break
+            print('Reached the end of the video!')
+            break
         if int(frame_num)%5 == 1:
             frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             frame_resized = cv2.resize(frame_rgb, (width, height))
@@ -198,12 +200,16 @@ def func():
                     # Find intersection(whether overlapping)
                     if poly1.intersects(poly2):
                         cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 255, 255), 4)
+                        keyboard.press('1')
+                        keyboard.release('1')
                         pygame.mixer.init()
                         pygame.mixer.music.load("beep-08b.wav")
                         pygame.mixer.music.play()
                         
                     if poly_critical.intersects(poly2):
                         cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 0, 255), 4)
+                        keyboard.press('1')
+                        keyboard.release('1')
                         pygame.mixer.init()
                         pygame.mixer.music.load("beep-09.wav")
                         pygame.mixer.music.play()
@@ -230,6 +236,8 @@ def func():
             
             # toc = time.time()
             # print(toc-tic, 'seconds')
+            keyboard.press('a')
+            keyboard.release('a')
 
             # Press 'q' to quit
             if cv2.waitKey(1) == ord('q'):
