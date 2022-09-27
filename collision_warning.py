@@ -231,13 +231,12 @@ def func():
                         
                     if poly_critical.intersects(poly2):
                         cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 0, 255), 4)
-                        keyboard.press('2')
-                        keyboard.release('2')
+                        keyboard.press('1')
+                        keyboard.release('1')
                         pygame.mixer.init()
                         pygame.mixer.music.load("beep-09.wav")
                         pygame.mixer.music.play()
-                        keyboard.press('a')
-                        keyboard.release('a')
+                        
                     
     
                     # print(isIntersection)
@@ -261,6 +260,9 @@ def func():
             
             # toc = time.time()
             # print(toc-tic, 'seconds')
+
+            keyboard.press('a')
+            keyboard.release('a')
 
             # Press 'q' to quit
             if cv2.waitKey(1) == ord('q'):
