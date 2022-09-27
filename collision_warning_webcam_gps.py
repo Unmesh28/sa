@@ -257,6 +257,8 @@ while True:
             # Find intersection(whether overlapping)
             if poly1.intersects(poly2):
                 cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 255, 255), 4)
+                keyboard.press('1')
+                keyboard.release('1')
                 pygame.mixer.init()
                 pygame.mixer.music.load("beep-08b.wav")
                 pygame.mixer.music.play()
