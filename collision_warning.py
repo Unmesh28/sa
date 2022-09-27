@@ -207,14 +207,19 @@ while(video.isOpened()):
                     pygame.mixer.music.load("beep-08b.wav")
                     pygame.mixer.music.play()
                     
-                if poly_critical.intersects(poly2):
+                elif poly_critical.intersects(poly2):
                     cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 0, 255), 4)
                     keyboard.press('1')
                     keyboard.release('1')
                     pygame.mixer.init()
                     pygame.mixer.music.load("beep-09.wav")
                     pygame.mixer.music.play()
-                
+
+                else :
+                    keyboard.press('a')
+                    keyboard.release('a')   
+
+            
   
                 # print(isIntersection)
                 
@@ -246,8 +251,7 @@ while(video.isOpened()):
 # Clean up
 video.release()
 result.release()
-keyboard.press('a')
-keyboard.release('a')
+
 cv2.destroyAllWindows()
 
 
