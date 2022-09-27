@@ -273,8 +273,7 @@ while True:
                 pygame.mixer.music.play()
 
             # Draw label
-            keyboard.press('a')
-            keyboard.release('a')
+            
             object_name = labels[int(classes[i])] # Look up object name from "labels" array using class index
             label = '%s: %d%%' % (object_name, int(scores[i]*100)) # Example: 'person: 72%'
             labelSize, baseLine = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2) # Get font size
@@ -294,6 +293,9 @@ while True:
     t2 = cv2.getTickCount()
     time1 = (t2-t1)/freq
     frame_rate_calc= 1/time1
+
+    keyboard.press('a')
+    keyboard.release('a')
 
     
 
