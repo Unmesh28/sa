@@ -253,6 +253,10 @@ while True:
                 four_wheeler = True
             elif object_name in A :
                 animl = True
+
+            if (not poly_critical.intersects(poly2) and not poly1.intersects(poly2)) :
+                keyboard.press('a')
+                keyboard.release('a')
                 
             # Find intersection(whether overlapping)
             if poly1.intersects(poly2):
@@ -272,9 +276,7 @@ while True:
                 pygame.mixer.music.load("beep-09.wav")
                 pygame.mixer.music.play()
 
-            if (not poly_critical.intersects(poly2) and not poly1.intersects(poly2)) :
-                keyboard.press('a')
-                keyboard.release('a')
+            
 
             # Draw label
             
