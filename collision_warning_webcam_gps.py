@@ -24,6 +24,7 @@ from threading import Thread
 import importlib.util
 import pygame
 from shapely.geometry import Polygon
+from pynput.keyboard import Key, Controller
 
 # Define VideoStream class to handle streaming of video from webcam in separate processing thread
 # Source - Adrian Rosebrock, PyImageSearch: https://www.pyimagesearch.com/2015/12/28/increasing-raspberry-pi-fps-with-python-and-opencv/
@@ -67,39 +68,30 @@ class VideoStream:
 	# Indicate that the camera and thread should be stopped
         self.stopped = True
 
+# Define and parse input arguments
+parser = argparse.ArgumentParser()
+parser.add_argument('--modeldir', help='Folder the .tflite file is located in',
+                    required=True)
+parser.add_argument('--graph', help='Name of the .tflite file, if different than detect.tflite',
+                    default='detect.tflite')
+parser.add_argument('--labels', help='Name of the labelmap file, if different than labelmap.txt',
+                    default='labelmap.txt')
+parser.add_argument('--threshold', help='Minimum confidence threshold for displaying detected objects',
+                    default=0.5)
+parser.add_argument('--resolution', help='Desired webcam resolution in WxH. If the webcam does not support the resolution entered, errors may occur.',
+                    default='1280x720')
+parser.add_argument('--edgetpu', help='Use Coral Edge TPU Accelerator to speed up detection',
+                    action='store_true')
 
+args = parser.parse_args()
 
-# # Define and parse input arguments
-# parser = argparse.ArgumentParser()
-# parser.add_argument('--modeldir', help='Folder the .tflite file is located in',
-#                     required=True)
-# parser.add_argument('--graph', help='Name of the .tflite file, if different than detect.tflite',
-#                     default='detect.tflite')
-# parser.add_argument('--labels', help='Name of the labelmap file, if different than labelmap.txt',
-#                     default='labelmap.txt')
-# parser.add_argument('--threshold', help='Minimum confidence threshold for displaying detected objects',
-#                     default=0.5)
-# parser.add_argument('--resolution', help='Desired webcam resolution in WxH. If the webcam does not support the resolution entered, errors may occur.',
-#                     default='1280x720')
-# parser.add_argument('--edgetpu', help='Use Coral Edge TPU Accelerator to speed up detection',
-#                     action='store_true')
-
-# args = parser.parse_args()
-
-# MODEL_NAME = args.modeldir
-# GRAPH_NAME = args.graph
-# LABELMAP_NAME = args.labels
-# min_conf_threshold = float(args.threshold)
-# resW, resH = args.resolution.split('x')
-# imW, imH = int(resW), int(resH)
-# use_TPU = args.edgetpu
-
-MODEL_NAME = './India_model/'
-GRAPH_NAME = 'detect.tflite'
-LABELMAP_NAME = 'labelmap.txt'
-VIDEO_NAME = '00380017.AVI'
-min_conf_threshold = float(0.5)
-use_TPU = 'store_true'
+MODEL_NAME = args.modeldir
+GRAPH_NAME = args.graph
+LABELMAP_NAME = args.labels
+min_conf_threshold = float(args.threshold)
+resW, resH = args.resolution.split('x')
+imW, imH = int(resW), int(resH)
+use_TPU = args.edgetpu
 
 # Import TensorFlow libraries
 # If tflite_runtime is installed, import interpreter from tflite_runtime, else import from regular tensorflow
@@ -239,27 +231,6 @@ while True:
             # cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (10, 255, 0), 2)
             
             poly2 = Polygon([(xmin,ymin), (xmin, ymax), (xmax,ymax), (xmax,ymin)])
-
-            pedestrian = False
-            two_wheeler = False
-            four_wheeler = False
-            animl = False
-
-            P = ['person']
-            T = ['bicycle', 'motorcycle', 'rider']
-            F = ['autorickshaw', 'bus', 'car', 'caravan', 'truck']
-            A = ['animal']
-                
-            object_name = labels[int(classes[i])]
-
-            if object_name in P :
-                pedestrian = True
-            elif object_name in T :
-                two_wheeler = True
-            elif object_name in F :
-                four_wheeler = True
-            elif object_name in A :
-                    animl = True
                 
             # Find intersection(whether overlapping)
             if poly1.intersects(poly2):
@@ -270,6 +241,9 @@ while True:
                     
             if poly_critical.intersects(poly2):
                 cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 0, 255), 4)
+                keyboard = Controller()
+                keyboard.press('1')
+                keyboard.release('1')
                 pygame.mixer.init()
                 pygame.mixer.music.load("beep-09.wav")
                 pygame.mixer.music.play()
