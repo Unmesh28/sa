@@ -263,7 +263,7 @@ while True:
                 pygame.mixer.music.load("beep-08b.wav")
                 pygame.mixer.music.play()
                     
-            if poly_critical.intersects(poly2):
+            elif poly_critical.intersects(poly2):
                 cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 0, 255), 4)
                 
                 keyboard.press('1')
@@ -271,6 +271,10 @@ while True:
                 pygame.mixer.init()
                 pygame.mixer.music.load("beep-09.wav")
                 pygame.mixer.music.play()
+
+            else :
+                keyboard.press('a')
+                keyboard.release('a')
 
             # Draw label
             
@@ -294,8 +298,7 @@ while True:
     time1 = (t2-t1)/freq
     frame_rate_calc= 1/time1
 
-    keyboard.press('a')
-    keyboard.release('a')
+    
 
     
 
