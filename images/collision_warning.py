@@ -216,6 +216,8 @@ def func():
                     
     
                     # print(isIntersection)
+                    keyboard.press('a')
+                    keyboard.release('a')
                     
                     # Draw label
                     object_name = labels[int(classes[i])] # Look up object name from "labels" array using class index
@@ -236,8 +238,7 @@ def func():
             
             # toc = time.time()
             # print(toc-tic, 'seconds')
-            keyboard.press('a')
-            keyboard.release('a')
+            
 
             # Press 'q' to quit
             if cv2.waitKey(1) == ord('q'):
