@@ -185,6 +185,8 @@ Default_zone2 = Zone_30 # Polygon([(649, 533), (565, 715), (919, 707), (677, 533
 
 while True:
 
+    keyboard = Controller()
+
     # Start timer (for calculating frame rate)
     t1 = cv2.getTickCount()
 
@@ -231,6 +233,26 @@ while True:
             # cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (10, 255, 0), 2)
             
             poly2 = Polygon([(xmin,ymin), (xmin, ymax), (xmax,ymax), (xmax,ymin)])
+            pedestrian = False
+            two_wheeler = False
+            four_wheeler = False
+            animl = False
+
+            P = ['person']
+            T = ['bicycle', 'motorcycle', 'rider']
+            F = ['autorickshaw', 'bus', 'car', 'caravan', 'truck']
+            A = ['animal']
+                    
+            object_name = labels[int(classes[i])]
+
+            if object_name in P :
+                pedestrian = True
+            elif object_name in T :
+                two_wheeler = True
+            elif object_name in F :
+                four_wheeler = True
+            elif object_name in A :
+                animl = True
                 
             # Find intersection(whether overlapping)
             if poly1.intersects(poly2):
@@ -241,7 +263,7 @@ while True:
                     
             if poly_critical.intersects(poly2):
                 cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 0, 255), 4)
-                keyboard = Controller()
+                
                 keyboard.press('1')
                 keyboard.release('1')
                 pygame.mixer.init()
@@ -268,6 +290,9 @@ while True:
     t2 = cv2.getTickCount()
     time1 = (t2-t1)/freq
     frame_rate_calc= 1/time1
+
+    keyboard.press('a')
+    keyboard.release('a')
 
     # Press 'q' to quit
     if cv2.waitKey(1) == ord('q'):
