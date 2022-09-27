@@ -24,6 +24,7 @@ from threading import Thread
 import importlib.util
 import pygame
 from shapely.geometry import Polygon
+from pynput.keyboard import Key, Controller
 
 # Define VideoStream class to handle streaming of video from webcam in separate processing thread
 # Source - Adrian Rosebrock, PyImageSearch: https://www.pyimagesearch.com/2015/12/28/increasing-raspberry-pi-fps-with-python-and-opencv/
@@ -240,6 +241,9 @@ while True:
                     
             if poly_critical.intersects(poly2):
                 cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 0, 255), 4)
+                keyboard = Controller()
+                keyboard.press('1')
+                keyboard.release('1')
                 pygame.mixer.init()
                 pygame.mixer.music.load("beep-09.wav")
                 pygame.mixer.music.play()
