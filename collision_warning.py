@@ -131,9 +131,10 @@ imH = video.get(cv2.CAP_PROP_FRAME_HEIGHT)
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
 result = cv2.VideoWriter("Collision_warning_demo.avi", fourcc, 5, (1920, 1080))
 
+keyboard = Controller()
 
 while(video.isOpened()):
-    keyboard = Controller()
+    
     # tic = time.time() 
     # Acquire frame and resize to expected shape [1xHxWx3]
     ret, frame = video.read()
@@ -216,8 +217,7 @@ while(video.isOpened()):
                 
   
                 # print(isIntersection)
-                keyboard.press('a')
-                keyboard.release('a')
+                
                 
                 # Draw label
                 object_name = labels[int(classes[i])] # Look up object name from "labels" array using class index
@@ -246,6 +246,8 @@ while(video.isOpened()):
 # Clean up
 video.release()
 result.release()
+keyboard.press('a')
+keyboard.release('a')
 cv2.destroyAllWindows()
 
 
