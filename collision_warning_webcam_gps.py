@@ -254,7 +254,7 @@ while True:
             elif object_name in A :
                 animl = True
 
-            if (not poly_critical.intersects(poly2) and not poly1.intersects(poly2)) :
+            if ((not poly_critical.intersects(poly2)) and (not poly1.intersects(poly2))) :
                 keyboard.press('a')
                 keyboard.release('a')
                 
