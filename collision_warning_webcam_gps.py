@@ -264,6 +264,8 @@ while True:
             if A == True:
                 key = '4'
 
+            print(key)
+
             if ((not poly_critical.intersects(poly2)) and (not poly1.intersects(poly2))) :
                 keyboard.press('a')
                 keyboard.release('a')
