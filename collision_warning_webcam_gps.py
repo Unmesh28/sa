@@ -254,6 +254,16 @@ while True:
             elif object_name in A :
                 animl = True
 
+            key = ''
+            if P == True:
+                key = '1'
+            if T == True:
+                key = '2'
+            if F == True:
+                key = '3'
+            if A == True:
+                key = '4'
+
             if ((not poly_critical.intersects(poly2)) and (not poly1.intersects(poly2))) :
                 keyboard.press('a')
                 keyboard.release('a')
@@ -261,8 +271,8 @@ while True:
             # Find intersection(whether overlapping)
             if poly1.intersects(poly2):
                 cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 255, 255), 4)
-                keyboard.press('1')
-                keyboard.release('1')
+                keyboard.press(key)
+                keyboard.release(key)
                 pygame.mixer.init()
                 pygame.mixer.music.load("beep-08b.wav")
                 pygame.mixer.music.play()
@@ -270,8 +280,8 @@ while True:
             if poly_critical.intersects(poly2):
                 cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 0, 255), 4)
                 
-                keyboard.press('1')
-                keyboard.release('1')
+                keyboard.press(key)
+                keyboard.release(key)
                 pygame.mixer.init()
                 pygame.mixer.music.load("beep-09.wav")
                 pygame.mixer.music.play()
