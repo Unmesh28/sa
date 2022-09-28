@@ -254,7 +254,7 @@ while True:
             elif object_name in A :
                 animl = True
 
-            key = ''
+            key = 'a'
             if P == True:
                 key = '1'
             if T == True:
