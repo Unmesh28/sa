@@ -266,9 +266,9 @@ while True:
 
             print(key)
 
-            if ((not poly_critical.intersects(poly2)) and (not poly1.intersects(poly2))) :
-                keyboard.press('a')
-                keyboard.release('a')
+            # if ((not poly_critical.intersects(poly2)) and (not poly1.intersects(poly2))) :
+            #     keyboard.press('a')
+            #     keyboard.release('a')
                 
             # Find intersection(whether overlapping)
             if poly1.intersects(poly2):
