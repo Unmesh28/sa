@@ -198,7 +198,7 @@ while(video.isOpened()):
                 # poly2 = Polygon(p5, p6, p7, p8)
                 poly2 = Polygon([(xmin,ymin), (xmin, ymax), (xmax,ymax), (xmax,ymin)])
 
-                if (not poly_critical.intersects(poly2) and not poly1.intersects(poly2)) :
+                if ((not poly_critical.intersects(poly2)) and (not poly1.intersects(poly2))) :
                     keyboard.press('a')
                     keyboard.release('a')
                 

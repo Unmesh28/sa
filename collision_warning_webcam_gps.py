@@ -243,39 +243,39 @@ while True:
             F = ['autorickshaw', 'bus', 'car', 'caravan', 'truck']
             A = ['animal']
                     
-            object_name = labels[int(classes[i])]
+            # object_name = labels[int(classes[i])]
 
-            if object_name in P :
-                pedestrian = True
-            elif object_name in T :
-                two_wheeler = True
-            elif object_name in F :
-                four_wheeler = True
-            elif object_name in A :
-                animl = True
+            # if object_name in P :
+            #     pedestrian = True
+            # elif object_name in T :
+            #     two_wheeler = True
+            # elif object_name in F :
+            #     four_wheeler = True
+            # elif object_name in A :
+            #     animl = True
 
-            key = 'a'
-            if P == True:
-                key = '1'
-            if T == True:
-                key = '2'
-            if F == True:
-                key = '3'
-            if A == True:
-                key = '4'
+            # key = 'a'
+            # if P == True:
+            #     key = '1'
+            # if T == True:
+            #     key = '2'
+            # if F == True:
+            #     key = '3'
+            # if A == True:
+            #     key = '4'
 
-            print(str(object_name))
-            print(key)
+            # print(str(object_name))
+            # print(key)
 
-            # if ((not poly_critical.intersects(poly2)) and (not poly1.intersects(poly2))) :
-            #     keyboard.press('a')
-            #     keyboard.release('a')
+            if ((not poly_critical.intersects(poly2)) and (not poly1.intersects(poly2))) :
+                keyboard.press('a')
+                keyboard.release('a')
                 
             # Find intersection(whether overlapping)
             if poly1.intersects(poly2):
                 cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 255, 255), 4)
-                keyboard.press(key)
-                keyboard.release(key)
+                keyboard.press('1')
+                keyboard.release('1')
                 pygame.mixer.init()
                 pygame.mixer.music.load("beep-08b.wav")
                 pygame.mixer.music.play()
@@ -283,8 +283,8 @@ while True:
             if poly_critical.intersects(poly2):
                 cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 0, 255), 4)
                 
-                keyboard.press(key)
-                keyboard.release(key)
+                keyboard.press('1')
+                keyboard.release('1')
                 pygame.mixer.init()
                 pygame.mixer.music.load("beep-09.wav")
                 pygame.mixer.music.play()
