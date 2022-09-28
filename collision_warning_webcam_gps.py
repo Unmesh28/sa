@@ -264,7 +264,7 @@ while True:
             if A == True:
                 key = '4'
 
-            print(object_name)
+            print(str(object_name))
             print(key)
 
             # if ((not poly_critical.intersects(poly2)) and (not poly1.intersects(poly2))) :
