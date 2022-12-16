@@ -15,7 +15,7 @@
 # Import packages
 import os
 import argparse
-import cv2
+import cv2  
 import numpy as np
 import sys
 import importlib.util
@@ -198,23 +198,23 @@ while(video.isOpened()):
                 # poly2 = Polygon(p5, p6, p7, p8)
                 poly2 = Polygon([(xmin,ymin), (xmin, ymax), (xmax,ymax), (xmax,ymin)])
 
-                if ((not poly_critical.intersects(poly2)) and (not poly1.intersects(poly2))) :
-                    keyboard.press('a')
-                    keyboard.release('a')
+                # if ((not poly_critical.intersects(poly2)) and (not poly1.intersects(poly2))) :
+                #     keyboard.press('a')
+                #     keyboard.release('a')
                 
                 # Find intersection(whether overlapping)
                 if poly1.intersects(poly2):
                     cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 255, 255), 4)
-                    keyboard.press('1')
-                    keyboard.release('1')
+                    # keyboard.press('1')
+                    # keyboard.release('1')
                     pygame.mixer.init()
                     pygame.mixer.music.load("beep-08b.wav")
                     pygame.mixer.music.play()
                     
                 if poly_critical.intersects(poly2):
                     cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 0, 255), 4)
-                    keyboard.press('1')
-                    keyboard.release('1')
+                    # keyboard.press('1')
+                    # keyboard.release('1')
                     pygame.mixer.init()
                     pygame.mixer.music.load("beep-09.wav")
                     pygame.mixer.music.play()
