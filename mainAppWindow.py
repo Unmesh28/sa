@@ -1,6 +1,7 @@
 import sys
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QMainWindow, QApplication
+from PyQt5.QtCore import QThread, pyqtSignal,QObject
 from mainWindow import Ui_MainWindow
 
 
@@ -8,6 +9,9 @@ class MyMainWindow(QMainWindow, Ui_MainWindow):
 
     def __init__(self, parent=None):
         QMainWindow.__init__(self, parent=parent)
+        self.worker = Worker()
+        self.worker.sig.connect(self.updatelabel)
+        self.x=0
         self.setupUi(self)
 
     def keyPressEvent(self, event):
