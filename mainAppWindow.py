@@ -3,16 +3,21 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from PyQt5.QtCore import QThread, pyqtSignal,QObject
 from mainWindow import Ui_MainWindow
+from Thread import *
 
 
 class MyMainWindow(QMainWindow, Ui_MainWindow):
 
     def __init__(self, parent=None):
         QMainWindow.__init__(self, parent=parent)
-        self.worker = Worker()
-        self.worker.sig.connect(self.updatelabel)
+        self.worker = WorkerThread()
+        self.worker.sig.connect(self.updatelb)
         self.x=0
         self.setupUi(self)
+
+    def updatelb(self, text):
+        self.changeImg(1, 28)
+
 
     def keyPressEvent(self, event):
         global img_no
